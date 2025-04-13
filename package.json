@@ -7,7 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/2025-I/proyecto-1-ada-ii-2025-i-team-deepgpt/issues"
   },
-  "homepage": "https://github.com/2025-I/proyecto-1-ada-ii-2025-i-team-deepgpt#readme"
+  "homepage": "https://github.com/2025-I/proyecto-1-ada-ii-2025-i-team-deepgpt#readme",
+  "devDependencies": {
+    "jest": "29.7.0"
+  }
 }
