@@ -1,0 +1,23 @@
+{
+  "name": "proyecto-1-ada-ii-2025-i-team-deepgpt",
+  "version": "1.0.0",
+  "description": "[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/kKWtV-CB) # Ejemplo de titulo de Taller",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2025-I/proyecto-1-ada-ii-2025-i-team-deepgpt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2025-I/proyecto-1-ada-ii-2025-i-team-deepgpt/issues"
+  },
+  "homepage": "https://github.com/2025-I/proyecto-1-ada-ii-2025-i-team-deepgpt#readme"
+}
