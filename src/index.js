@@ -1,30 +1,35 @@
-const fs = require('fs');
-const path = require('path');
-const { isPalindromeBruteForce } = require('./palindrome/brute-force-solution.js');
+console.log("Hello, world!");
 
+const { greedyPartyInvite } = require("./business-party/greedy-solution");
 
-// Ruta del archivo
-const filePath = path.join(__dirname, './data', 'phrases.txt');
-
-// Leer el archivo
-fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-        console.error('Error al leer el archivo:', err);
-        return;
+const problems = [
+    {
+      m: 5,
+      matrix: [
+        [0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 1, 0],
+        [0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0]
+      ],
+      convivencias: [10, 30, 15, 5, 8]
+    },
+    {
+      m: 6,
+      matrix: [
+        [0, 0, 1, 0, 0, 0],
+        [1, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 0]
+      ],
+      convivencias: [12, 21, 5, 10, 8, 7]
     }
+  ];
 
-    const lines = data.trim().split('\n');
-    const total = parseInt(lines[0]);
+  const resultados = greedyPartyInvite(2, problems);
 
-    if (isNaN(total) || lines.length - 1 < total) {
-        console.error('El archivo no tiene el formato correcto.');
-        return;
-    }
-
-    const frases = lines.slice(1, total + 1);
-
-    frases.forEach((frase, index) => {
-        const longest = isPalindromeBruteForce(frase);
-        console.log(`Frase ${index + 1}: ${longest}`);
-    });
-});
+  for (const { invitados, total } of resultados) {
+    console.log(invitados.join(" ") + " " + total);
+  }
