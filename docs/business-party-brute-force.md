@@ -15,7 +15,7 @@ Para resolver el problema mediante fuerza bruta, se aplicó la siguiente estrate
 - Se generan `2^n` subconjuntos.
 - Para cada subconjunto, se realiza una validación que consiste en verificar que no exista una relación directa entre ninguno de sus elementos. Esto implica comparar cada par de elementos del subconjunto, lo cual en el peor caso requiere `O(n^2)` operaciones.
 - Por lo tanto, esta parte del algoritmo tiene una complejidad total de:
-  $$O(2^n \cdot n^2)$$
+  `$$O(2^n \cdot n^2)$$`
 
 ### 🔹 Cálculo de valores y ordenamiento
 
