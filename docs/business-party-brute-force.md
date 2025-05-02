@@ -46,3 +46,66 @@ A continuación se muestra la gráfica obtenida:
 Esta gráfica permite identificar visualmente cómo crece el tiempo de ejecución en función del tamaño del problema, facilitando así la estimación de su complejidad temporal de forma experimental.
 
 Analizando la gráfica, se puede observar que la complejidad del algoritmo crece de forma exponencial, lo cual concuerda con el análisis teórico realizado previamente.
+
+## Análisis de Complejidad Espacial
+
+El análisis espacial considera la cantidad de memoria utilizada durante la ejecución del algoritmo. En el caso del enfoque de fuerza bruta implementado, los principales factores que influyen en el consumo de memoria son:
+
+### 1. Matriz de adyacencia
+
+La entrada del problema incluye una matriz de adyacencia que representa las relaciones entre los empleados (por ejemplo, jefe-subordinado). Esta matriz es de tamaño \(n \times n\), por lo tanto su complejidad espacial es:
+
+$$
+O(n^2)
+$$
+
+Este espacio es necesario únicamente para leer y consultar la relación entre nodos. No se modifica ni crece durante la ejecución.
+
+### 2. Arreglo de valores de convivencia
+
+También se recibe como entrada un arreglo de tamaño \(n\), donde cada posición representa la convivencia de un empleado. Este arreglo se mantiene constante y ocupa:
+
+$$
+O(n)
+$$
+
+### 3. Llamadas recursivas para generar subconjuntos
+
+La generación de subconjuntos se realiza mediante una función recursiva. Aunque el número total de subconjuntos es \(2^n\), la profundidad máxima de la recursión es \(n\), ya que en cada llamada se avanza una posición. Por lo tanto, el espacio de pila necesario para la recursión es:
+
+$$
+O(n)
+$$
+
+Este espacio se libera conforme se retrocede en el árbol de recursión, por lo que no se acumula exponencialmente.
+
+### 4. Arreglo `combinations` (subconjuntos válidos)
+
+Aquí es donde se acumula la mayor parte del uso de memoria. Por cada subconjunto generado y validado como "válido" (es decir, sin relaciones directas entre sus miembros), se almacena una copia en el arreglo `combinations`. En el peor de los casos, todos los \(2^n\) subconjuntos pueden ser válidos.
+
+Cada subconjunto puede contener hasta \(n\) elementos (en el peor caso, el conjunto completo), así que el espacio ocupado por todos ellos es:
+
+$$
+O(2^n \cdot n)
+$$
+
+Este componente domina la complejidad espacial total del algoritmo.
+
+---
+
+### Complejidad Espacial Total
+
+Sumando los componentes descritos, obtenemos:
+
+- Matriz de adyacencia: \(O(n^2)\)
+- Arreglo de convivencia: \(O(n)\)
+- Pila de recursión: \(O(n)\)
+- Subconjuntos válidos almacenados: \(O(2^n \cdot n)\)
+
+Por lo tanto, la complejidad espacial total queda dominada por el almacenamiento de subconjuntos válidos:
+
+$$
+O(2^n \cdot n)
+$$
+
+Este crecimiento exponencial confirma que el enfoque no es viable para valores grandes de \(n\), no solo en tiempo de ejecución sino también en el consumo de memoria.
