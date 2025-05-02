@@ -98,7 +98,7 @@ Este componente domina la complejidad espacial total del algoritmo.
 Sumando los componentes descritos, obtenemos:
 
 - Matriz de adyacencia: $$O(n^2)$$
-- Arreglo de convivencia:$$O(n)$$
+- Arreglo de convivencia: $$O(n)$$
 - Pila de recursión: $$O(n)$$
 - Subconjuntos válidos almacenados: $$O(2^n \cdot n)$$
 
