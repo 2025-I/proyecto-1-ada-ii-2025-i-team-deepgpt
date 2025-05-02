@@ -8,7 +8,7 @@ Para resolver el problema mediante fuerza bruta, se aplicó la siguiente estrate
 2. Antes de almacenar un subconjunto como una combinación válida, se verifica que ningún par de elementos dentro de él tenga una relación directa de subordinación (es decir, que uno sea jefe del otro). Esta relación está representada en una matriz de adyacencia.
 3. Si el subconjunto cumple la condición anterior (es "válido"), se almacena en una lista de combinaciones para su posterior análisis.
 
-## 📊 Análisis de Complejidad
+## 📊 Análisis de Complejidad Temporal
 
 ### 🔹 Generación y validación de subconjuntos
 
@@ -34,3 +34,15 @@ Comparando las dos fases del algoritmo:
 La fase dominante en cuanto a complejidad temporal es la generación y validación, por lo tanto, la **complejidad total del algoritmo es**:
 
 $$O(2^n \cdot n^2)$$
+
+## Análisis de Complejidad Temporal Experimental
+
+Para complementar el análisis teórico, se realizaron múltiples ejecuciones del algoritmo con entradas de distintos tamaños. A partir de estas ejecuciones se registraron los tiempos promedios de ejecución para cada tamaño de entrada, lo que permitió graficar los resultados y observar el comportamiento del algoritmo de forma empírica.
+
+A continuación se muestra la gráfica obtenida:
+
+![Gráfica de complejidad experimental](./imgs/business-party-brute-force.png)
+
+Esta gráfica permite identificar visualmente cómo crece el tiempo de ejecución en función del tamaño del problema, facilitando así la estimación de su complejidad temporal de forma experimental.
+
+Analizando la gráfica, se puede observar que la complejidad del algoritmo crece de forma exponencial, lo cual concuerda con el análisis teórico realizado previamente.
