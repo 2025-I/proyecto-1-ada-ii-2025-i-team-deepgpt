@@ -87,3 +87,26 @@ Por otro lado, se realizó la comparación gráfica entre la curva de tiempos de
 En general, los resultados experimentales confirman la hipótesis teórica de que el algoritmo presenta una complejidad de tipo cuadrática. A continuación, se muestra la gráfica que evidencia esta comparación:
 
 ![Comparación entre tiempo de ejecución y función cuadrática](./imgs/business-party-dynamic.png)
+
+## Análisis de Complejidad Espacial
+
+El algoritmo hace uso de varias estructuras auxiliares para poder almacenar información temporal mientras se realiza el recorrido del árbol y el cálculo de la solución óptima. A continuación, se describen los principales elementos que contribuyen al consumo de memoria:
+
+- La **lista de adyacencia** `list`, que almacena los vecinos de cada nodo. En el peor de los casos (grafo completo), esta estructura puede ocupar hasta $$O(n^2)$$, aunque para árboles típicos se mantiene en $$O(n)$$ ya que hay a lo sumo $$n - 1$$ aristas.
+- El arreglo `visited`, utilizado para evitar ciclos durante el DFS. Tiene un tamaño lineal de $$O(n)$$.
+
+- La tabla `dynamicTable`, que almacena para cada nodo dos valores: la mejor suma si se incluye el nodo y si no se incluye. Su tamaño es de $$O(n)$$.
+
+- El arreglo `selected`, que contiene los nodos seleccionados para cada uno de los dos estados posibles por nodo. En el peor de los casos, podría almacenar listas de hasta $$n$$ elementos por entrada, resultando en una complejidad espacial de hasta $$O(n^2)$$ si no se optimiza la reconstrucción del conjunto.
+
+Por lo tanto, la **complejidad espacial total del algoritmo** puede estimarse como:
+
+$$
+O(n^2)
+$$
+
+Esto se debe principalmente al uso del arreglo `selected`, que en el caso peor puede crecer cuadráticamente. Si no se requiere reconstruir el conjunto de nodos seleccionados, esta estructura puede omitirse o reestructurarse, lo cual reduciría la complejidad espacial a:
+
+$$
+O(n)
+$$
