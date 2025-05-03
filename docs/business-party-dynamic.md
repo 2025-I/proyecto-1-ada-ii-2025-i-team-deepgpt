@@ -60,18 +60,6 @@ $$
 
 donde $$n$$ es el número de nodos y $$m$$ es el número de aristas.
 
-En un árbol, siempre se cumple que:
-
-$$
-m = n - 1
-$$
-
-por lo tanto:
-
-$$
-O(n + m) = O(n)
-$$
-
 Y en el paso final, la complejidad es:
 
 $$
