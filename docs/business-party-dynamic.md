@@ -1,34 +1,30 @@
 # Solución dinámica al problema: Planeando una fiesta de la compañía
 
-Este problema representa el caso particular del problema general del **conjunto independiente máximo en un árbol**. El problema consiste en encontrar el subconjunto más grande de vértices en un árbol tal que no haya dos vértices adyacentes en ese subconjunto.
+Este problema representa a el problema general de del conjunto independiente máximo en un árbol. El problema del conjunto independiente máximo en un árbol es el problema de encontrar el subconjunto más grande de vértices en un árbol tal que no haya dos vértices adyacentes en ese subconjunto.
 
 ## Estrategia
 
-Para resolver este problema de forma dinámica, utilizamos la siguiente estrategia:
+Para resolver este problema de forma dinámica utilizamos la siguiente estrategia. Primero pasamos de una **matriz de adyacencia** a una **lista de adyacencia**, esto lo hacemos ya que la lista de adyacencia nos proporciona una optimización en la consulta de los nodos adyacentes. Por ejemplo, en la matriz de adyacencia, para saber cuáles son los nodos adyacentes, debemos recorrer cada uno de ellos y validar si están relacionados; pero recorremos cada nodo, por lo que perdemos tiempo en consultar nodos que no están relacionados.
 
-1. **Conversión de matriz a lista de adyacencia:**  
-   Se transforma la matriz de adyacencia a una lista de adyacencia. Esta conversión permite optimizar la consulta de nodos adyacentes. Mientras que con la matriz se necesita recorrer todas las columnas de un nodo para verificar cuáles están conectadas, con la lista accedemos directamente a los vecinos.
+En cambio, con la **lista de adyacencia**, cada nodo tiene directamente los nodos relacionados con él, por lo que no se pierde tiempo en consultar nodos que no están relacionados.
 
-2. **Recorrido DFS (Depth-First Search):**  
-   Se realiza un recorrido DFS en el grafo. Por cada nodo:
+Luego, utilizamos la técnica **DFS (Depth-First Search)** para recorrer cada uno de los nodos. Cuando estamos en un nodo, tomamos de la lista de adyacencia y consultamos los relacionados a este. Primero se valida que **no sea el padre** y luego que **no esté visitado** (para no caer en ciclos), para luego validar los **dos casos** que se pueden presentar:
 
-   - Se omite el nodo padre y se evita visitar nodos ya marcados (para prevenir ciclos).
-   - Se evalúan dos escenarios:
-     - **No incluir al nodo actual:** Se puede considerar incluir o no a sus hijos, tomando el máximo beneficio posible.
-     - **Incluir al nodo actual:** No se pueden incluir los hijos, ya que están directamente conectados.
+1. **No llevar el nodo actual:** por lo tanto se podría llevar a los hijos o no, si esto otorga mayor beneficio.
+2. **Llevar el nodo actual:** en este momento **no se podrían llevar a sus hijos** ya que tendrían una relación directa.
 
-   En cada paso se calcula el beneficio en términos de **convivencia**, que es el criterio usado para decidir qué nodos seleccionar.
+En cada caso se calcula el **beneficio de la convivencia**, ya que es el criterio para seleccionar la mejor opción.
 
 ## Notación
 
-Sea \( T \) un árbol enraizado en el nodo \( u \), y definimos:
+Sea $$T$$ un árbol enraizado en el nodo $$u$$, y definimos:
 
-- \( \text{val}(u) \): Valor de convivencia del nodo \( u \)
-- \( \text{hijos}(u) \): Conjunto de hijos directos de \( u \)
-- \( \text{dp}(u, 1) \): Máxima suma si se incluye al nodo \( u \)
-- \( \text{dp}(u, 0) \): Máxima suma si se excluye al nodo \( u \)
+- $$\text{val}(u)$$: el valor de convivencia del nodo $$u$$
+- $$\text{hijos}(u)$$: el conjunto de hijos directos de $$u$$
+- $$\text{dp}(u, 1)$$: máxima suma si se incluye a $$u$$
+- $$\text{dp}(u, 0)$$: máxima suma si se excluye a $$u$$
 
-Entonces, las relaciones de recurrencia son:
+Entonces:
 
 $$
 \text{dp}(u, 1) = \text{val}(u) + \sum_{v \in \text{hijos}(u)} \text{dp}(v, 0)
@@ -38,41 +34,58 @@ $$
 \text{dp}(u, 0) = \sum_{v \in \text{hijos}(u)} \max(\text{dp}(v, 0), \text{dp}(v, 1))
 $$
 
-## Análisis de complejidad temporal
+## Análisis de Complejidad Temporal
 
-- **Conversión de matriz a lista de adyacencia:**  
-  Requiere recorrer la matriz completa de tamaño \( n \times n \), por lo tanto su complejidad es:
-
-  $$
-  O(n^2)
-  $$
-
-- **DFS + programación dinámica:**  
-  El algoritmo visita cada nodo una sola vez, y procesa sus aristas una vez. La complejidad del recorrido DFS en un grafo es:
-
-  $$
-  O(n + m)
-  $$
-
-  donde \( n \) es el número de nodos y \( m \) el número de aristas. En un árbol, \( m = n - 1 \), así que esta parte es lineal:
-
-  $$
-  O(n)
-  $$
-
-- **Paso final (selección del resultado óptimo):**  
-  Solo se compara y retorna el mejor resultado entre dos valores, por lo que su complejidad es:
-
-  $$
-  O(1)
-  $$
-
-### Conclusión
-
-En resumen, la complejidad total del algoritmo es dominada por la conversión de la matriz a lista de adyacencia, que es:
+Como primer paso realizamos la conversión de matriz de adyacencia a lista de adyacencia. Este paso consume:
 
 $$
 O(n^2)
 $$
 
-El resto del algoritmo tiene complejidad lineal \( O(n) \), pero no afecta al orden de crecimiento dominante.
+ya que se debe recorrer cada relación de nodo con los demás, es decir, cada celda de la matriz.
+
+Luego, en el segundo paso, tenemos el algoritmo de recorrido de árbol DFS, el cual tiene una complejidad temporal de:
+
+$$
+O(n)
+$$
+
+Y dentro de este, se recorren las **aristas** de este nodo, pero esto **se hace máximo una vez por nodo**. Más específicamente, si llegamos al nodo 1, este recorre sus aristas una vez. Cuando pasamos de este nodo, **no se vuelven a recorrer sus aristas**.
+
+Por lo tanto, en general, aunque se recorren todas las aristas, **no se hace por cada nodo**, sino **solo por el nodo actual una vez**. Esto nos deja que la complejidad del algoritmo sea:
+
+$$
+O(n + m)
+$$
+
+donde $$n$$ es el número de nodos y $$m$$ es el número de aristas.
+
+En un árbol, siempre se cumple que:
+
+$$
+m = n - 1
+$$
+
+por lo tanto:
+
+$$
+O(n + m) = O(n)
+$$
+
+Y en el paso final, la complejidad es:
+
+$$
+O(1)
+$$
+
+ya que solo accede a los elementos y hace una comparación.
+
+### En resumen:
+
+La complejidad del algoritmo es:
+
+$$
+O(n^2)
+$$
+
+por la conversión de matriz de adyacencia a lista de adyacencia, que es el paso más costoso. El algoritmo dinámico en sí tiene complejidad lineal, pero no domina la complejidad total.
