@@ -77,3 +77,13 @@ O(n^2)
 $$
 
 por la conversión de matriz de adyacencia a lista de adyacencia, que es el paso más costoso. El algoritmo dinámico en sí tiene complejidad lineal, pero no domina la complejidad total.
+
+## Análisis de Complejidad Temporal Experimental
+
+Se realizaron múltiples ejecuciones del algoritmo con diferentes tamaños de entrada: 10, 50, 100, 400, 700, 1000, 3000 y 5000. Estos tamaños fueron seleccionados teniendo en cuenta el máximo valor que soporta el equipo de pruebas sin comprometer la estabilidad del sistema.
+
+Por otro lado, se realizó la comparación gráfica entre la curva de tiempos de ejecución del algoritmo (representada en color azul) y la función cuadrática $$O(n^2)$$ (representada en color rojo). Se puede evidenciar cómo ambas presentan un comportamiento similar, con algunas variaciones que pueden deberse a factores externos como la carga del sistema, el recolector de basura del entorno de ejecución u otros procesos corriendo en segundo plano.
+
+En general, los resultados experimentales confirman la hipótesis teórica de que el algoritmo presenta una complejidad de tipo cuadrática. A continuación, se muestra la gráfica que evidencia esta comparación:
+
+![Comparación entre tiempo de ejecución y función cuadrática](./imgs/business-party-dynamic.png)
