@@ -43,7 +43,7 @@ A continuación se muestra la gráfica obtenida:
 
 ![Gráfica de complejidad experimental](./imgs/business-party-brute-force.png)
 
-Esta gráfica permite identificar visualmente cómo crece el tiempo de ejecución en función del tamaño del problema, facilitando así la estimación de su complejidad temporal de forma experimental.
+Esta gráfica permite identificar visualmente cómo crece el tiempo de ejecución en función del tamaño del problema, facilitando así la estimación de su complejidad temporal de forma experimental. También se puede evidenciar como la comparación entre la complejidad teorica y exprimental es similiar con ligeras variaciones que pueden ser explicadas con elementos externos al algoritmo.
 
 Analizando la gráfica, se puede observar que la complejidad del algoritmo crece de forma exponencial, lo cual concuerda con el análisis teórico realizado previamente.
 
