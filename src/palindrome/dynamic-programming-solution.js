@@ -7,22 +7,22 @@ function normalizeString(str) {
         .replace(/[óòöô]/g, 'o')
         .replace(/[úùüû]/g, 'u')
         .replace(/[^a-z0-9]/g, ''); // Elimina todo lo que no sea alfanumérico
-  }
-  
-  function longestPalindromicSubstring(entrada) {
+}
+
+function longestPalindromicSubstring(entrada) {
     const normalized = normalizeString(entrada);
     const n = normalized.length;
     if (n === 0) return "";
-  
+
     let start = 0;
     let maxLength = 1;
     const dp = Array.from({ length: n }, () => Array(n).fill(false));
-  
+
     // Caso base: substrings de longitud 1
     for (let i = 0; i < n; i++) {
         dp[i][i] = true;
     }
-  
+
     // Caso base: substrings de longitud 2
     for (let i = 0; i < n - 1; i++) {
         if (normalized[i] === normalized[i + 1]) {
@@ -31,7 +31,7 @@ function normalizeString(str) {
             maxLength = 2;
         }
     }
-  
+
     // Substrings de longitud > 2
     for (let len = 3; len <= n; len++) {
         for (let i = 0; i <= n - len; i++) {
@@ -45,34 +45,15 @@ function normalizeString(str) {
             }
         }
     }
-  
+
     return normalized.slice(start, start + maxLength);
-  }
+}
+
+module.exports = {
+    longestPalindromicSubstring,
+  };
   
-  const fs = require('fs');
-  const path = require('path');
-  
-  function runBenchmark() {
-      const sizes = [500];
-  
-      for (const size of sizes) {
-          const filePath = path.join(__dirname, `../data/palindrome${size}.txt`);
-          
-          let input;
-          try {
-              input = fs.readFileSync(filePath, 'utf8');
-          } catch (err) {
-              console.error(`No se pudo leer el archivo ${filePath}`);
-              continue;
-          }
-  
-          const start = process.hrtime.bigint(); // más preciso que Date.now()
-          longestPalindromicSubstring(input);
-          const end = process.hrtime.bigint();
-  
-          const durationMs = Number(end - start) / 1_000_000; // nanosegundos a milisegundos
-          console.log(`Entrada ${size} caracteres → ${durationMs.toFixed(2)} ms`);
-      }
-  }
-  
-  runBenchmark();
+// Prueba corregida
+const entrada = "Yo hago yoga hoy";
+const resultado = longestPalindromicSubstring(entrada);
+console.log("Resultado:", resultado); // "amanapanama"

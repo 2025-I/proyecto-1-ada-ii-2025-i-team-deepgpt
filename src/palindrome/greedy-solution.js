@@ -59,10 +59,7 @@ function normalizarCadena(cadena) {
     const normalizada = normalizarCadena(cadena);
     return encontrarSubsecuenciaVoraz(normalizada);
   }
-  
-  // 4. Prueba con ejemplo
-  const entrada = "Maria dijo Yo dono rosas, oro no doy por ello el la dejo.";
+  // 4. Ejemplo de uso
+  const entrada = "Anita lava la tina";
   const resultado = encontrarPalindromoVoraz(entrada);
-  
-  console.log("Resultado:", resultado);
-  
+  console.log("Resultado:", resultado); // "amanapanama"
