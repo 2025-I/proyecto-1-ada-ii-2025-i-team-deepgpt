@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "node --watch src/index.js",
     "start": "node src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "electron": "electron ./src/index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/2025-I/proyecto-1-ada-ii-2025-i-team-deepgpt#readme",
   "devDependencies": {
+    "electron": "36.1.0",
     "jest": "29.7.0"
   }
 }
