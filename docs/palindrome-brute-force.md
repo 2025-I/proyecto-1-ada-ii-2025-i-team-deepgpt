@@ -119,7 +119,7 @@ La complejidad espacial es lineal (`O(n)`), ya que no se almacenan todas las sub
 
 ### Análisis de Complejidad Temporal Experimental
 
-Se realizaron múltiples ejecuciones del algoritmo con diferentes tamaños de entrada: 100, 500, 1000, 2000, 3000, 4000 y 5000. Estos tamaños fueron seleccionados teniendo en cuenta el máximo valor que soporta el equipo de pruebas sin comprometer la estabilidad del sistema.
+Se realizaron múltiples ejecuciones del algoritmo con diferentes tamaños de entrada: 10,20,30,50,100,500,1000. Estos tamaños fueron seleccionados teniendo en cuenta el máximo valor que soporta el equipo de pruebas sin comprometer la estabilidad del sistema.
 
 La gráfica muestra el tiempo de ejecución (La linea azul) de la solución de fuerza bruta para encontrar el palíndromo más largo en función del tamaño del problema (m). Se compara con una referencia teórica de complejidad O(n³) escalada (La linea roja). Se puede evidenciar cómo ambas presentan un comportamiento similar, con algunas variaciones que pueden deberse a factores externos como la carga del sistema, el recolector de basura del entorno de ejecución u otros procesos corriendo en segundo plano.
 
