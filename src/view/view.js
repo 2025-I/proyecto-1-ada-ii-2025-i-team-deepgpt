@@ -13,7 +13,7 @@ function crearVentana() {
     },
   });
 
-  win.loadFile("index.html");
+  win.loadFile(path.join(__dirname, "index.html"));
 }
 
 function renderView() {
@@ -33,6 +33,60 @@ function renderView() {
       }
       return null;
     });
+
+    // IPC para ejecutar la solución seleccionada
+    ipcMain.handle(
+      "ejecutar-solucion",
+      async (event, { problema, solucion, input }) => {
+        try {
+          let algoritmo;
+
+          if (problema === "p1") {
+            // Palíndromo más largo
+            switch (solucion) {
+              case "sol1":
+                algoritmo = require("../src/palindrome/brute-force-solution.js");
+                break;
+              case "sol2":
+                const { isPalindromeBruteForce } = require("../palindrome/brute-force-solution.js");
+                algoritmo = isPalindromeBruteForce(input.n);
+                break;
+              case "sol3":
+                algoritmo = require("../src/palindrome/greedy-solution.js");
+                break;
+              default:
+                throw new Error("Solución no válida para problema p1");
+            }
+          } else if (problema === "p2") {
+            // Fiesta de la empresa
+            switch (solucion) {
+              case "sol21":
+                algoritmo = require("../src/business-party/brute-force-solution.js");
+                break;
+              case "sol22":
+                algoritmo = require("../business-party/dynamic-programming-soluction.js");
+                break;
+              case "sol23":
+                ({
+                  greedySolutionPartyInvite,
+                } = require("../business-party/greedy-solution.js"));
+                algoritmo= greedySolutionPartyInvite(input.n, input.problems);
+                break;
+              default:
+                throw new Error("Solución no válida para problema p2");
+            }
+          } else {
+            throw new Error("Problema no reconocido");
+          }
+          //aqui si está mostrando el resultado
+          console.log("Resultados:", algoritmo);
+          return algoritmo;
+        } catch (error) {
+          console.error("Error al ejecutar la solución:", error.message);
+          return "Error: " + error.message;
+        }
+      }
+    );
   });
 }
 
