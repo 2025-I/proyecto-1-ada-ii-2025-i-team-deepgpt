@@ -1,10 +1,14 @@
 // 1. Normalización de la cadena
-function normalizarCadena(cadena) {
-    return cadena
+function normalizarCadena (cadena) {
+  return cadena
       .toLowerCase()
-      .split('')
-      .filter(c => /[a-z0-9]/.test(c));
-  }
+      .replace(/[áàäâ]/g, 'a')
+      .replace(/[éèëê]/g, 'e')
+      .replace(/[íìïî]/g, 'i')
+      .replace(/[óòöô]/g, 'o')
+      .replace(/[úùüû]/g, 'u')
+      .replace(/[^a-z0-9]/g, ''); // Elimina todo lo que no sea alfanumérico
+}
   
   // 2. Búsqueda voraz de una subsecuencia palindrómica
   function encontrarSubsecuenciaVoraz(normalizada) {
@@ -59,7 +63,14 @@ function normalizarCadena(cadena) {
     const normalizada = normalizarCadena(cadena);
     return encontrarSubsecuenciaVoraz(normalizada);
   }
-  // 4. Ejemplo de uso
-  const entrada = "Anita lava la tina";
-  const resultado = encontrarPalindromoVoraz(entrada);
-  console.log("Resultado:", resultado); // "amanapanama"
+  // 4. Exportar la función
+  module.exports = {
+    encontrarPalindromoVoraz,
+  };
+// 5. Ejemplo de uso
+const cadena = `En una vieja carta, cuidadosamente doblada y amarillenta por el tiempo, 
+      se leía: 'Amo la pacífica paloma'. No había firma, solo esa frase y una flor prensada.`;
+const resultado = encontrarPalindromoVoraz(cadena);
+console.log(resultado); // "amolapacificapaloma"
+
+

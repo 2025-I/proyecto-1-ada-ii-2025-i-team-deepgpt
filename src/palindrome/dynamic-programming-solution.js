@@ -53,7 +53,3 @@ module.exports = {
     longestPalindromicSubstring,
   };
   
-// Prueba corregida
-const entrada = "Yo hago yoga hoy";
-const resultado = longestPalindromicSubstring(entrada);
-console.log("Resultado:", resultado); // "amanapanama"
