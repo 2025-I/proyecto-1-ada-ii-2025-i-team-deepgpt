@@ -48,7 +48,9 @@ function renderView() {
                 algoritmo = require("../src/palindrome/brute-force-solution.js");
                 break;
               case "sol2":
-                const { isPalindromeBruteForce } = require("../palindrome/brute-force-solution.js");
+                const {
+                  isPalindromeBruteForce,
+                } = require("../palindrome/brute-force-solution.js");
                 algoritmo = isPalindromeBruteForce(input.n);
                 break;
               case "sol3":
@@ -67,11 +69,29 @@ function renderView() {
                 algoritmo = require("../business-party/dynamic-programming-soluction.js");
                 break;
               case "sol23":
-                ({
+                
+                const {
                   greedySolutionPartyInvite,
-                } = require("../business-party/greedy-solution.js"));
-                algoritmo= greedySolutionPartyInvite(input.n, input.problems);
-                break;
+                } = require("../business-party/greedy-solution.js");
+                const resultados = greedySolutionPartyInvite(
+                  input.n,
+                  input.problems
+                );
+
+                let contenido = "";
+                resultados.forEach((res) => {
+                  contenido += `${res.invitados.join(" ") + " " +res.total}\n`;
+                });
+
+                const outputPath = path.join(
+                  app.getPath("desktop"),
+                  "resultado_fiesta_greedy.txt"
+                );
+
+                fs.writeFileSync(outputPath, contenido, "utf8");
+
+                console.log("Archivo generado en:", outputPath);
+                return `Archivo generado exitosamente en: ${outputPath}`;
               default:
                 throw new Error("Solución no válida para problema p2");
             }
