@@ -14,7 +14,7 @@ describe("Dynamic Programming Solution", () => {
     const result = businessPartyDynamic(matrix, coexistence);
 
     expect(result.total).toBe(5);
-    expect(result.selected.sort()).toEqual([0]);
+    expect(result.selected).toEqual([1, 0, 0]);
   });
 
   test("Árbol tipo línea de 4 nodos", () => {
@@ -29,7 +29,7 @@ describe("Dynamic Programming Solution", () => {
     const result = businessPartyDynamic(matrix, coexistence);
 
     expect(result.total).toBe(10);
-    expect(result.selected.sort()).toEqual([0, 2]);
+    expect(result.selected).toEqual([1, 0, 1, 0]);
   });
 
   test("Árbol binario completo de 7 nodos", () => {
@@ -47,7 +47,7 @@ describe("Dynamic Programming Solution", () => {
     const result = businessPartyDynamic(matrix, coexistence);
 
     expect(result.total).toBe(50);
-    expect(result.selected.sort()).toEqual([0, 3, 4, 5, 6]);
+    expect(result.selected).toEqual([1, 0, 0, 1, 1, 1, 1]);
   });
 
   test("Árbol estrella de 5 nodos", () => {
@@ -63,7 +63,7 @@ describe("Dynamic Programming Solution", () => {
     const result = businessPartyDynamic(matrix, coexistence);
 
     expect(result.total).toBe(12);
-    expect(result.selected.sort()).toEqual([1, 2, 3, 4]);
+    expect(result.selected).toEqual([0, 1, 1, 1, 1]);
   });
 
   test("Raíz alta, hijos bajos", () => {
@@ -78,6 +78,6 @@ describe("Dynamic Programming Solution", () => {
     const result = businessPartyDynamic(matrix, coexistence);
 
     expect(result.total).toBe(20);
-    expect(result.selected.sort()).toEqual([0]);
+    expect(result.selected).toEqual([1, 0, 0, 0]);
   });
 });

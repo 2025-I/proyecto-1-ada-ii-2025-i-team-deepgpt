@@ -1,6 +1,18 @@
 const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const fs = require("fs");
+const {
+  businessPartyDynamic,
+} = require("../business-party/dynamic-programming-soluction.js");
+const {
+  businessPartyBruteForce,
+} = require("../business-party/brute-force-soluction.js");
+const {
+  greedySolutionPartyInvite,
+} = require("../business-party/greedy-solution.js");
+const {
+  isPalindromeBruteForce,
+} = require("../palindrome/brute-force-solution.js");
 
 function crearVentana() {
   const win = new BrowserWindow({
@@ -34,73 +46,60 @@ function renderView() {
       return null;
     });
 
-    // IPC para ejecutar la solución seleccionada
     ipcMain.handle(
       "ejecutar-solucion",
       async (event, { problema, solucion, input }) => {
         try {
-          let algoritmo;
-
-          if (problema === "p1") {
-            // Palíndromo más largo
-            switch (solucion) {
-              case "sol1":
-                algoritmo = require("../src/palindrome/brute-force-solution.js");
-                break;
-              case "sol2":
-                const {
-                  isPalindromeBruteForce,
-                } = require("../palindrome/brute-force-solution.js");
-                algoritmo = isPalindromeBruteForce(input.n);
-                break;
-              case "sol3":
-                algoritmo = require("../src/palindrome/greedy-solution.js");
-                break;
-              default:
-                throw new Error("Solución no válida para problema p1");
-            }
-          } else if (problema === "p2") {
-            // Fiesta de la empresa
-            switch (solucion) {
-              case "sol21":
-                algoritmo = require("../src/business-party/brute-force-solution.js");
-                break;
-              case "sol22":
-                algoritmo = require("../business-party/dynamic-programming-soluction.js");
-                break;
-              case "sol23":
-                
-                const {
-                  greedySolutionPartyInvite,
-                } = require("../business-party/greedy-solution.js");
-                const resultados = greedySolutionPartyInvite(
-                  input.n,
-                  input.problems
-                );
-
-                let contenido = "";
-                resultados.forEach((res) => {
-                  contenido += `${res.invitados.join(" ") + " " +res.total}\n`;
-                });
-
-                const outputPath = path.join(
-                  app.getPath("desktop"),
-                  "resultado_fiesta_greedy.txt"
-                );
-
-                fs.writeFileSync(outputPath, contenido, "utf8");
-
-                console.log("Archivo generado en:", outputPath);
-                return `Archivo generado exitosamente en: ${outputPath}`;
-              default:
-                throw new Error("Solución no válida para problema p2");
-            }
-          } else {
-            throw new Error("Problema no reconocido");
+          const selectedAlgorithm = selectAlgorithm(problema, solucion);
+          if (!selectedAlgorithm) {
+            throw new Error("Algoritmo no encontrado.");
           }
-          //aqui si está mostrando el resultado
-          console.log("Resultados:", algoritmo);
-          return algoritmo;
+
+          if (selectedAlgorithm === businessPartyBruteForce) {
+            const result = input.problems.map((problem) => {
+              return selectedAlgorithm(problem.matrix, problem.convivencias);
+            });
+            console.log("Resultado:", result);
+            createFileResponse({
+              problem: problema,
+              content: result,
+              filename: "brute-force",
+            });
+          }
+
+          if (selectedAlgorithm === businessPartyDynamic) {
+            const result = input.problems.map((problem) => {
+              return selectedAlgorithm(problem.matrix, problem.convivencias);
+            });
+            console.log("Resultado:", result);
+            createFileResponse({
+              problem: problema,
+              content: result,
+              filename: "dynamic-programming",
+            });
+          }
+
+          if (selectedAlgorithm === greedySolutionPartyInvite) {
+            const result = selectedAlgorithm(input.n, input.problems);
+            console.log("Resultado:", result);
+            createFileResponse({
+              problem: problema,
+              content: result,
+              filename: "greedy-solution",
+            });
+          }
+
+          if (selectedAlgorithm === isPalindromeBruteForce) {
+            const result = input.problems.map((word) => {
+              return selectedAlgorithm(word);
+            });
+            console.log("Resultado:", result);
+            createFileResponse({
+              problem: problema,
+              content: result,
+              filename: "brute-force-palindrome",
+            });
+          }
         } catch (error) {
           console.error("Error al ejecutar la solución:", error.message);
           return "Error: " + error.message;
@@ -108,6 +107,51 @@ function renderView() {
       }
     );
   });
+}
+
+function selectAlgorithm(problem, solution) {
+  let soluction = null;
+
+  if (problem === "p2") {
+    if (solution === "brute-force") {
+      soluction = businessPartyBruteForce;
+    } else if (solution === "greedy") {
+      soluction = greedySolutionPartyInvite;
+    } else if (solution === "dynamic") {
+      soluction = businessPartyDynamic;
+    }
+  } else if (problem === "p1") {
+    if (solution === "brute-force") {
+      soluction = isPalindromeBruteForce;
+    }
+  }
+
+  return soluction;
+}
+
+function createFileResponse({ problem, content, filename }) {
+  if (problem === "p1") {
+    const response = content.join("\n");
+
+    const outputPath = path.join(app.getPath("desktop"), filename + ".txt");
+
+    fs.writeFileSync(outputPath, response, "utf8");
+    console.log("Archivo generado en:", outputPath);
+    return `Archivo generado exitosamente en: ${outputPath}`;
+  }
+
+  const response = content
+    .map((res) => {
+      return `${res.selected.join(" ")} ${res.total}`;
+    })
+    .join("\n");
+
+  const outputPath = path.join(app.getPath("desktop"), filename + ".txt");
+
+  fs.writeFileSync(outputPath, response, "utf8");
+
+  console.log("Archivo generado en:", outputPath);
+  return `Archivo generado exitosamente en: ${outputPath}`;
 }
 
 module.exports = { renderView };
