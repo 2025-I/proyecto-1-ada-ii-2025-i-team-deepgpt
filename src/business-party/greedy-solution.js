@@ -33,7 +33,7 @@ function greedySolutionPartyInvite(n, problems) {
       (sum, val, i) => sum + (val === 1 ? convivencias[i] : 0),
       0
     );
-    results.push({ invitados, total });
+    results.push({ selected: invitados, total });
   }
 
   return results;

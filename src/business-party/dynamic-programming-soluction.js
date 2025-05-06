@@ -43,12 +43,16 @@ function businessPartyDynamic(matrix, coexistence) {
   if (dynamicTable[0][0] > dynamicTable[0][1]) {
     return {
       total: dynamicTable[0][0],
-      selected: selected[0][0].sort((a, b) => a - b),
+      selected: Array.from({ length: nodos }, (_, i) =>
+        selected[0][0].includes(i) ? 1 : 0
+      ),
     };
   } else {
     return {
       total: dynamicTable[0][1],
-      selected: selected[0][1].sort((a, b) => a - b),
+      selected: Array.from({ length: nodos }, (_, i) =>
+        selected[0][1].includes(i) ? 1 : 0
+      ),
     };
   }
 }
