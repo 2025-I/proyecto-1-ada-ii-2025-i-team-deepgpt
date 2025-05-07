@@ -13,6 +13,12 @@ const {
 const {
   isPalindromeBruteForce,
 } = require("../palindrome/brute-force-solution.js");
+const {
+  longestPalindromicSubstring,
+} = require("../palindrome/dynamic-programming-solution.js");
+const {
+  encontrarPalindromoVoraz,
+} = require("../palindrome/greedy-solution.js");
 
 function crearVentana() {
   const win = new BrowserWindow({
@@ -59,7 +65,6 @@ function renderView() {
             const result = input.problems.map((problem) => {
               return selectedAlgorithm(problem.matrix, problem.convivencias);
             });
-            console.log("Resultado:", result);
             createFileResponse({
               problem: problema,
               content: result,
@@ -71,7 +76,6 @@ function renderView() {
             const result = input.problems.map((problem) => {
               return selectedAlgorithm(problem.matrix, problem.convivencias);
             });
-            console.log("Resultado:", result);
             createFileResponse({
               problem: problema,
               content: result,
@@ -81,7 +85,6 @@ function renderView() {
 
           if (selectedAlgorithm === greedySolutionPartyInvite) {
             const result = selectedAlgorithm(input.n, input.problems);
-            console.log("Resultado:", result);
             createFileResponse({
               problem: problema,
               content: result,
@@ -93,13 +96,38 @@ function renderView() {
             const result = input.problems.map((word) => {
               return selectedAlgorithm(word);
             });
-            console.log("Resultado:", result);
             createFileResponse({
               problem: problema,
               content: result,
               filename: "brute-force-palindrome",
             });
           }
+
+            if(selectedAlgorithm === longestPalindromicSubstring) {
+  
+              const result = input.problems.map((word) => {
+                return selectedAlgorithm(word);
+              });
+              createFileResponse({
+                problem: problema,
+                content: result,
+                filename: "dynamic-programming-palindrome",
+              });
+            }
+
+            if(selectedAlgorithm === encontrarPalindromoVoraz) {
+              const result = input.problems.map((word) => {
+                return selectedAlgorithm(word);
+              });
+              createFileResponse({
+                problem: problema,
+                content: result,
+                filename: "greedy-solution-palindrome",
+              });
+            }
+
+          return "Archivo generado exitosamente en el escritorio.";
+          
         } catch (error) {
           console.error("Error al ejecutar la solución:", error.message);
           return "Error: " + error.message;
@@ -123,6 +151,10 @@ function selectAlgorithm(problem, solution) {
   } else if (problem === "p1") {
     if (solution === "brute-force") {
       soluction = isPalindromeBruteForce;
+    } else if(solution === "dynamic"){
+        soluction = longestPalindromicSubstring;
+    } else if (solution === "greedy") {
+      soluction = encontrarPalindromoVoraz;
     }
   }
 
@@ -136,7 +168,6 @@ function createFileResponse({ problem, content, filename }) {
     const outputPath = path.join(app.getPath("desktop"), filename + ".txt");
 
     fs.writeFileSync(outputPath, response, "utf8");
-    console.log("Archivo generado en:", outputPath);
     return `Archivo generado exitosamente en: ${outputPath}`;
   }
 
@@ -150,7 +181,6 @@ function createFileResponse({ problem, content, filename }) {
 
   fs.writeFileSync(outputPath, response, "utf8");
 
-  console.log("Archivo generado en:", outputPath);
   return `Archivo generado exitosamente en: ${outputPath}`;
 }
 

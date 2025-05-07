@@ -67,10 +67,5 @@ function normalizarCadena (cadena) {
   module.exports = {
     encontrarPalindromoVoraz,
   };
-// 5. Ejemplo de uso
-const cadena = `En una vieja carta, cuidadosamente doblada y amarillenta por el tiempo, 
-      se leía: 'Amo la pacífica paloma'. No había firma, solo esa frase y una flor prensada.`;
-const resultado = encontrarPalindromoVoraz(cadena);
-console.log(resultado); // "amolapacificapaloma"
 
 

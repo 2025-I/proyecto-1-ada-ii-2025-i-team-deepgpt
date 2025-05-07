@@ -2,38 +2,38 @@ function greedySolutionPartyInvite(n, problems) {
   const results = [];
 
   for (let idx = 0; idx < n; idx++) {
-    const { m, matrix, convivencias } = problems[idx];
-    const invitados = new Array(m).fill(0);
-    const hijos = Array.from({ length: m }, () => []);
-    const padres = Array.from({ length: m }, () => []);
+    const { m, matrix, convivencias: coexistence } = problems[idx];
+    const guests = new Array(m).fill(0);
+    const children = Array.from({ length: m }, () => []);
+    const parents = Array.from({ length: m }, () => []);
 
     for (let i = 0; i < m; i++) {
       for (let j = 0; j < m; j++) {
         if (matrix[i][j] === 1) {
-          hijos[i].push(j);
-          padres[j].push(i);
+          children[i].push(j);
+          parents[j].push(i);
         }
       }
     }
 
-    const candidatos = convivencias
+    const candidates = coexistence
       .map((calif, i) => ({ i, calif }))
       .sort((a, b) => b.calif - a.calif);
 
-    for (const { i } of candidatos) {
-      const subordinadoInvitado = hijos[i].some((h) => invitados[h] === 1);
-      const jefeInvitado = padres[i].some((p) => invitados[p] === 1);
+    for (const { i } of candidates) {
+      const invitedSubordinate = children[i].some((h) => guests[h] === 1);
+      const invitedBoss = parents[i].some((p) => guests[p] === 1);
 
-      if (!subordinadoInvitado && !jefeInvitado) {
-        invitados[i] = 1;
+      if (!invitedSubordinate && !invitedBoss) {
+        guests[i] = 1;
       }
     }
 
-    const total = invitados.reduce(
-      (sum, val, i) => sum + (val === 1 ? convivencias[i] : 0),
+    const total = guests.reduce(
+      (sum, val, i) => sum + (val === 1 ? coexistence[i] : 0),
       0
     );
-    results.push({ selected: invitados, total });
+    results.push({ selected: guests, total });
   }
 
   return results;
