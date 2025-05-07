@@ -1,12 +1,12 @@
 const { ipcRenderer } = require("electron");
 
-let archivoSeleccionado = null; // Guarda info del archivo seleccionado
+let archivoSeleccionado = null; 
 
-// 1. Selección de archivo
+
 document.getElementById("chooseFileBtn").addEventListener("click", async () => {
   const result = await ipcRenderer.invoke("select-file");
   if (result) {
-    archivoSeleccionado = result; // Guardar contenido y path
+    archivoSeleccionado = result; 
     document.getElementById("filePath").innerText = `Archivo: ${result.path}`;
   } else {
     archivoSeleccionado = null;
@@ -45,11 +45,11 @@ function processFileBusinessParty(content) {
     .map((l) => l.trim());
   let index = 0;
 
-  const n = parseInt(lines[index++], 10); // Cantidad de problemas
+  const n = parseInt(lines[index++], 10);
   const problems = [];
 
   for (let p = 0; p < n; p++) {
-    const m = parseInt(lines[index++], 10); // Cantidad de empleados
+    const m = parseInt(lines[index++], 10); 
     const matrix = [];
 
     for (let i = 0; i < m; i++) {
@@ -64,7 +64,6 @@ function processFileBusinessParty(content) {
   return { n, problems };
 }
 
-// 5. funcion para parsear el archivo de Palíndromo más largo
 function processFilePalindrome(content) {
   const lines = content
     .trim()
