@@ -5,8 +5,8 @@ function businessPartyBruteForce(matrix, coexistence) {
 
   function generateSets(index, current) {
     if (index === nodos) {
-      const isValid = current.every((node, i) => {
-        return current.every((otherNode, j) => {
+      const isValid = current.every((node) => {
+        return current.every((otherNode) => {
           return matrix[node][otherNode] === 0;
         });
       });
