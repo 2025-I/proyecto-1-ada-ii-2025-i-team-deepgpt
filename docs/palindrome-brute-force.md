@@ -119,10 +119,12 @@ La complejidad espacial es lineal (`O(n)`), ya que no se almacenan todas las sub
 
 ### Análisis de Complejidad Temporal Experimental
 
-Se realizaron múltiples ejecuciones del algoritmo con diferentes tamaños de entrada: 10,20,30,50,100,500,1000. Estos tamaños fueron seleccionados teniendo en cuenta el máximo valor que soporta el equipo de pruebas sin comprometer la estabilidad del sistema.
+Se realizaron múltiples ejecuciones del algoritmo con diferentes tamaños de entrada: 10, 20, 30, 50, 100, 500, 1000, 2000, 3000, 4000, 5000 y 6000 datos de entrada. Estos valores fueron seleccionados considerando tanto la progresión geométrica como el límite de estabilidad del sistema de pruebas.
 
-La gráfica muestra el tiempo de ejecución (La linea azul) de la solución de fuerza bruta para encontrar el palíndromo más largo en función del tamaño del problema (m). Se compara con una referencia teórica de complejidad O(n³) escalada (La linea roja). Se puede evidenciar cómo ambas presentan un comportamiento similar, con algunas variaciones que pueden deberse a factores externos como la carga del sistema, el recolector de basura del entorno de ejecución u otros procesos corriendo en segundo plano.
-
+La gráfica resultante muestra el tiempo de ejecución (línea azul) de la solución de fuerza bruta para encontrar el palíndromo más largo, en función del tamaño del problema (m). Se incluye una curva teórica escalada de complejidad O(n³) (línea roja) y otra de O(n²) (línea verde), esta última con el fin de ofrecer un contraste visual claro en la zona de crecimiento inicial.
 
 
 ![Comparación entre tiempo de ejecución y función cubica](./imgs/brute-force-solution-palindrome.png)
+
+Se observa que ambas curvas (O(n²) y los datos empíricos) coinciden para tamaños pequeños, pero comienzan a divergir a partir de n ≈ 50, donde el crecimiento empírico se alinea con una tendencia cúbica. Las ligeras fluctuaciones en la línea azul pueden atribuirse a factores externos como la carga del sistema, el recolector de basura del entorno de ejecución o procesos en segundo plano.
+
