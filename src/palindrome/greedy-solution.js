@@ -7,7 +7,7 @@ function normalizarCadena (cadena) {
       .replace(/[íìïî]/g, 'i')
       .replace(/[óòöô]/g, 'o')
       .replace(/[úùüû]/g, 'u')
-      .replace(/[^a-z0-9]/g, ''); // Elimina todo lo que no sea alfanumérico
+      .replace(/[^a-z0-9]/g, ''); 
 }
   
   // 2. Búsqueda voraz de una subsecuencia palindrómica
