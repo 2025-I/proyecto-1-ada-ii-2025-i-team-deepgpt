@@ -38,6 +38,6 @@ jobs:
           sonar-scanner \
             -Dsonar.projectKey=nombre-del-proyecto \
             -Dsonar.sources=. \
-            -Dsonar.host.url=https://a4da-190-60-38-45.ngrok-free.app \
+            -Dsonar.host.url= https://a6cb-190-60-38-45.ngrok-free.app \
             -Dsonar.login=$SONAR_TOKEN \
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
