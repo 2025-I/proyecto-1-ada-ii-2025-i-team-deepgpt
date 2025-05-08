@@ -69,5 +69,3 @@ function normalizarCadena (cadena) {
   };
 
 
-
-

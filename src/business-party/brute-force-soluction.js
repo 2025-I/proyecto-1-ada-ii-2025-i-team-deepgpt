@@ -5,8 +5,8 @@ function businessPartyBruteForce(matrix, coexistence) {
 
   function generateSets(index, current) {
     if (index === nodos) {
-      const isValid = current.every((node, i) => {
-        return current.every((otherNode, j) => {
+      const isValid = current.every((node) => {
+        return current.every((otherNode) => {
           return matrix[node][otherNode] === 0;
         });
       });
@@ -29,7 +29,9 @@ function businessPartyBruteForce(matrix, coexistence) {
     .map((combination) => {
       return {
         total: combination.reduce((acc, node) => acc + coexistence[node], 0),
-        selected: combination,
+        selected: Array.from({ length: nodos }, (_, i) =>
+          combination.includes(i) ? 1 : 0
+        ),
       };
     })
     .sort((a, b) => b.total - a.total);

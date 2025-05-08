@@ -19,7 +19,7 @@ describe("Greedy Programming Solution", () => {
     const result = greedySolutionPartyInvite(problems.length, problems);
 
     expect(result[0].total).toBe(5);
-    expect(result[0].invitados).toEqual([1, 0, 0]);
+    expect(result[0].selected).toEqual([1, 0, 0]);
   });
 
   test("Problema simple de 1 problema con 4 nodos", () => {
@@ -39,7 +39,7 @@ describe("Greedy Programming Solution", () => {
     const result = greedySolutionPartyInvite(problems.length, problems);
 
     expect(result[0].total).toBe(10);
-    expect(result[0].invitados).toEqual([1, 0, 1, 0]);
+    expect(result[0].selected).toEqual([1, 0, 1, 0]);
   });
 
   test("Problema con dos problemas", () => {
@@ -68,9 +68,9 @@ describe("Greedy Programming Solution", () => {
     const result = greedySolutionPartyInvite(problems.length, problems);
 
     expect(result[0].total).toBe(10);
-    expect(result[0].invitados).toEqual([1, 0, 1, 0]);
+    expect(result[0].selected).toEqual([1, 0, 1, 0]);
     expect(result[1].total).toBe(5);
-    expect(result[1].invitados).toEqual([1, 0, 0]);
+    expect(result[1].selected).toEqual([1, 0, 0]);
   });
 
   test("Problema con 4 problemas de diferentes tamaños de matrices", () => {
@@ -124,15 +124,15 @@ describe("Greedy Programming Solution", () => {
     const result = greedySolutionPartyInvite(problems.length, problems);
 
     expect(result[0].total).toBe(10);
-    expect(result[0].invitados).toEqual([1, 0, 1, 0]);
+    expect(result[0].selected).toEqual([1, 0, 1, 0]);
 
     expect(result[1].total).toBe(5);
-    expect(result[1].invitados).toEqual([1, 0, 0]);
+    expect(result[1].selected).toEqual([1, 0, 0]);
 
     expect(result[2].total).toBe(30);
-    expect(result[2].invitados).toEqual([1, 0, 0, 0, 0, 1, 1]);
+    expect(result[2].selected).toEqual([1, 0, 0, 0, 0, 1, 1]);
 
     expect(result[3].total).toBe(68);
-    expect(result[3].invitados).toEqual([0, 1, 0, 1, 0, 1]);
+    expect(result[3].selected).toEqual([0, 1, 0, 1, 0, 1]);
   });
 });

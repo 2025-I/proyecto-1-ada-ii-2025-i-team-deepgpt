@@ -78,6 +78,11 @@ $$
 
 por la conversión de matriz de adyacencia a lista de adyacencia, que es el paso más costoso. El algoritmo dinámico en sí tiene complejidad lineal, pero no domina la complejidad total.
 
+### Nota
+
+Es importante tener en cuenta que el algoritmo garantiza una solución óptima únicamente cuando el grafo de entrada es un árbol conexo (es decir, sin ciclos y completamente conectado). Si estas condiciones no se cumplen —por ejemplo, si el grafo contiene ciclos o no es conexo—, el algoritmo podría no encontrar la mejor solución.
+Esto se debe a que el problema de seleccionar un conjunto independiente de nodos con pesos máximos en un grafo general es un problema NP-Hard, lo cual implica que, hasta la fecha, no se conoce ningún algoritmo que lo resuelva de forma eficiente en tiempo polinomial para todos los casos. Resolver este problema en su forma general requeriría un enfoque de fuerza bruta, evaluando todas las combinaciones posibles de nodos, lo cual es computacionalmente inviable para grafos grandes.
+
 ## Análisis de Complejidad Temporal Experimental
 
 Se realizaron múltiples ejecuciones del algoritmo con diferentes tamaños de entrada: 10, 50, 100, 400, 700, 1000, 3000 y 5000. Estos tamaños fueron seleccionados teniendo en cuenta el máximo valor que soporta el equipo de pruebas sin comprometer la estabilidad del sistema.
