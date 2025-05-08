@@ -56,7 +56,7 @@ La solución por **Fuerza Bruta** para encontrar el palíndromo más largo gener
 
 **Gráfica de Complejidad:**
 
-![Comparación entre tiempo de ejecución y función cúbica](./imgs/brute-force-solution-palindrome.png)
+![Comparación entre tiempo de ejecución y función cúbica](./docs/imgs/brute-force-solution-palindrome.png)
 
 ---
 
@@ -66,7 +66,7 @@ La solución por **Programación Dinámica** optimiza el proceso almacenando res
 
 **Gráfica de Complejidad:**
 
-![Comparación entre tiempo de ejecución y función cuadrática](./imgs/palindrome-dynamic.png)
+![Comparación entre tiempo de ejecución y función cuadrática](./docs/imgs/palindrome-dynamic.png)
 
 ---
 
@@ -76,7 +76,7 @@ El algoritmo **Voraz** realiza una búsqueda progresiva en los extremos del text
 
 **Gráfica de Complejidad:**
 
-![Comparación entre tiempo de ejecución y función cuadrática](./imgs/palindrome-greedy.png)
+![Comparación entre tiempo de ejecución y función cuadrática](./docs/imgs/palindrome-greedy.png)
 
 ---
 
@@ -88,7 +88,7 @@ Este enfoque genera todos los subconjuntos posibles de empleados y evalúa cuál
 
 **Gráfica de Complejidad:**
 
-![Gráfica de complejidad experimental](./imgs/business-party-brute-force.png)
+![Gráfica de complejidad experimental](./docs/imgs/business-party-brute-force.png)
 
 ---
 
@@ -98,7 +98,7 @@ La solución dinámica emplea un recorrido DFS y la técnica de memoización par
 
 **Gráfica de Complejidad:**
 
-![Comparación entre tiempo de ejecución y función cuadrática](./imgs/business-party-dynamic.png)
+![Comparación entre tiempo de ejecución y función cuadrática](./docs/imgs/business-party-dynamic.png)
 
 ---
 
@@ -108,7 +108,7 @@ El enfoque voraz selecciona los empleados en función de su valor de convivencia
 
 **Gráfica de Complejidad:**
 
-![Comparación entre tiempo de ejecución y función cuadrática](./imgs/business-party-greedy.png)
+![Comparación entre tiempo de ejecución y función cuadrática](./docs/imgs/business-party-greedy.png)
 
 ---
 
@@ -136,8 +136,33 @@ Resumen de los resultados, observaciones sobre el rendimiento de cada algoritmo 
 
 ---
 
-## 7️⃣ Referencias
+## 7️⃣ Recomendaciones para ejecutar el programa
 
-Se listarán las referencias bibliográficas y documentales consultadas para la elaboración del proyecto.
+Se recomienda ejecutar el programa en Windows, ya que este sistema operativo incluye por defecto las librerías necesarias para que Electron funcione correctamente, incluyendo la funcionalidad de "Choose File" (selección de archivos mediante una ventana del sistema).
+Para correr el programa en Windows, use el siguiente comando:
 
+npm run electron
+
+Si se desea ejecutar el programa en Linux, también es posible hacerlo con el mismo comando:
+
+npm run electron
+
+No obstante, se deben tener en cuenta las siguientes consideraciones:
+
+Asegúrese de contar con un entorno gráfico correctamente configurado.
+
+Algunas distribuciones de Linux pueden requerir la instalación manual de ciertas librerías que en Windows ya están incluidas. Para evitar errores al ejecutar Electron, se recomienda instalar las siguientes dependencias:
+
+
+sudo apt-get install \
+  libnss3 \
+  libatk-bridge2.0-0 \
+  libxss1 \
+  libasound2 \
+  libgtk-3-0 \
+  libx11-xcb1 \
+  libxcb-dri3-0
+
+
+Si el botón "Choose File" no responde o no se abre la ventana de selección, verifique los permisos del entorno gráfico o intente ejecutar el programa con privilegios.
 
