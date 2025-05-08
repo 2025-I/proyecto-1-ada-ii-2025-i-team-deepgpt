@@ -1,4 +1,4 @@
-# Documentación del taller
+# Documentación del proyecto
 
 ## Ejemplo subtitulo
 
