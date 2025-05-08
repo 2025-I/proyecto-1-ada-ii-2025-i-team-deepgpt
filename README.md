@@ -133,3 +133,9 @@ sudo apt-get install \
 
 Si el botón "Choose File" no responde o no se abre la ventana de selección, verifique los permisos del entorno gráfico o intente ejecutar el programa con privilegios.
 
+## 5️⃣ Reporte Sonarqube
+
+Este sería el reporte generado por sonarqube
+
+(./docs/imgs/reportSonar.png)
+
