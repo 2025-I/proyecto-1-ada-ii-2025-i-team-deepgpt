@@ -31,7 +31,7 @@ button.addEventListener("click", async () => {
     input = processFilePalindrome(input);
   }
 
-  const result = await ipcRenderer.invoke("ejecutar-solucion", {
+  await ipcRenderer.invoke("ejecutar-solucion", {
     problema,
     solucion,
     input,

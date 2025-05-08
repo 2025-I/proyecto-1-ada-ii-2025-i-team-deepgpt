@@ -123,9 +123,10 @@ Se realizaron múltiples ejecuciones del algoritmo con diferentes tamaños de en
 
 A continuación, se incluye un espacio para las gráficas generadas durante las pruebas:
 
-```
-![Comparación entre tiempo de ejecución y función cubica](./imgs/palindrome-dynamic.png)
-```
+
+![Comparación entre tiempo de ejecución y función cúbica](./imgs/palindrome-dynamic.png)
+
+
 
 ---
 

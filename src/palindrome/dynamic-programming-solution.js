@@ -6,7 +6,7 @@ function normalizeString(str) {
       .replace(/[íìïî]/g, 'i')
       .replace(/[óòöô]/g, 'o')
       .replace(/[úùüû]/g, 'u')
-      .replace(/[^a-z0-9]/g, ''); // Elimina todo lo que no sea alfanumérico
+      .replace(/[^a-z0-9]/g, '');
   }
   
   function longestPalindromicSubstring(entrada) {
